@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('node:path');
+
 //const { updateElectronApp, UpdateSourceType } = require('update-electron-app');
 //const { autoUpdater } = require("electron-updater");
 
@@ -8,13 +9,39 @@ const path = require('node:path');
 
 //electron-updater
 const { autoUpdater } = require("electron-updater")
+const log = require('electron-log');
+autoUpdater.logger = log;
+autoUpdater.logger.transports.file.level = 'info';
+
+const { dialog } = require('electron')
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 // if (require('electron-squirrel-startup')) {
 //   app.quit();
 // }
+// setInterval(() => {
+//   autoUpdater.checkForUpdates()
+// }, 60000)
 
+autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+  const dialogOpts = {
+    type: 'info',
+    buttons: ['Перезапутить', 'Позже...'],
+    title: 'Обновление приложения',
+    message: process.platform === 'win32' ? releaseNotes : releaseName,
+    detail:
+      'Новая версия приложения была успешно загружена. Перезапустите приложение, чтобы обновить.'
+  }
 
+  dialog.showMessageBox(dialogOpts).then((returnValue) => {
+    if (returnValue.response === 0) autoUpdater.quitAndInstall()
+  })
+})
+
+autoUpdater.on('error', (message) => {
+  console.error('There was a problem updating the application')
+  console.error(message)
+})
 
 const createWindow = () => {
   // Create the browser window.
@@ -31,7 +58,9 @@ const createWindow = () => {
 
   // Open the DevTools.
   //mainWindow.webContents.openDevTools();
-  mainWindow.setMenuBarVisibility(false);
+  
+  //mainWindow.setMenuBarVisibility(false);
+  
   // Development 
   //mainWindow.loadURL('http://localhost:3000')
   // Production
@@ -52,6 +81,10 @@ app.whenReady().then(() => {
     }
   });
 });
+
+app.on('ready', async () => {
+  autoUpdater.checkForUpdatesAndNotify();
+}); 
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
