@@ -5,6 +5,8 @@ const path = require('node:path');
 
 //Autoupdater test v2.0.5
 //const { autoUpdater } = require('update-electron-app');
+
+//electron-updater
 const { autoUpdater } = require("electron-updater")
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -18,7 +20,7 @@ const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 800,
-    height: 600,
+    height: 700,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
