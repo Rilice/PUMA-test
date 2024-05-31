@@ -1,7 +1,7 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('node:path');
 const { updateElectronApp, UpdateSourceType } = require('update-electron-app')
-//const { autoUpdater } = require("electron-updater")
+require('update-electron-app')();
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
