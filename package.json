@@ -1,7 +1,7 @@
 {
   "name": "desktop-app",
   "productName": "desktop-app",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "description": "My Electron application description",
   "main": "src/index.js",
   "scripts": {
@@ -26,6 +26,7 @@
     "@electron/fuses": "^1.8.0",
     "electron": "30.0.9",
     "electron-builder": "^24.13.3",
+    "electron-updater": "^6.1.8",
     "update-electron-app": "^3.0.0"
   },
   "repository": {
@@ -39,6 +40,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.1"
+    "electron-squirrel-startup": "^1.0.1",
+    "electron-updater": "^6.1.8"
   }
 }
