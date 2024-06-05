@@ -141,7 +141,7 @@ createDefaultWindow = () => {
 app.whenReady().then(() => {
   
 
-
+//testv2.0.20
   //const menu = Menu.buildFromTemplate(template);
   //Menu.setApplicationMenu(menu);
 
