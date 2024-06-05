@@ -43,7 +43,7 @@ let win;
 
 function sendStatusToWindow(text) {
   log.info(text);
-  win.remote.webContents.send('message', text);
+  win.webContents.send('message', text);
 }
 
 autoUpdater.on('checking-for-update', () => {
@@ -147,6 +147,7 @@ app.whenReady().then(() => {
 
   //createWindow();
   createDefaultWindow();
+  autoUpdater.checkForUpdatesAndNotify();
 
   //On OS X it's common to re-create a window in the app when the
   //dock icon is clicked and there are no other windows open.
@@ -157,13 +158,14 @@ app.whenReady().then(() => {
       //Menu.setApplicationMenu(menu);
 
       createDefaultWindow();
+      autoUpdater.checkForUpdatesAndNotify();
     }
   });
 });
 
 app.on('ready', async () => {
   //createDefaultWindow();
-  autoUpdater.checkForUpdatesAndNotify();
+  //autoUpdater.checkForUpdatesAndNotify();
 }); 
 
 // Quit when all windows are closed, except on macOS. There, it's common
