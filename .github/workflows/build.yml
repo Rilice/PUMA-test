@@ -3,7 +3,7 @@ on: []
 
 jobs:
   build_on_linux:
-    runs-on: ubuntu-latest
+    runs-on: AppImage
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@master
