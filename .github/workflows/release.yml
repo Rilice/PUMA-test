@@ -12,6 +12,7 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: 20
+      - run: sudo snap install snapcraft --classic
       - name: install dependencies
         run: npm install
       - name: ship
