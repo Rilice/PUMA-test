@@ -14,10 +14,10 @@ jobs:
           node-version: 20
       - name: install dependencies
         run: npm install
-      - name: publish
+      - name: ship
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run publish
+        run: npm run ship
 
   publish_on_mac:
     runs-on: macos-latest
@@ -28,10 +28,10 @@ jobs:
           node-version: 20
       - name: install dependencies
         run: npm install
-      - name: publish
+      - name: ship
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run publish
+        run: npm run ship
 
   publish_on_win:
     runs-on: windows-latest
@@ -42,7 +42,7 @@ jobs:
           node-version: 20
       - name: install dependencies
         run: npm install
-      - name: publish
+      - name: ship
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run publish
+        run: npm run ship
