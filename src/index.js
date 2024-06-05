@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const {app, BrowserWindow, Menu} = require('electron');
 const path = require('node:path');
 
 //const { updateElectronApp, UpdateSourceType } = require('update-electron-app');
@@ -16,6 +16,30 @@ autoUpdater.logger.transports.file.level = 'info';
 log.info('App starting...');
 
 const { dialog } = require('electron')
+
+
+let template = []
+if (process.platform === 'darwin') {
+  // OS X
+  const name = app.getName();
+  template.unshift({
+    label: name,
+    submenu: [
+      {
+        label: 'About ' + name,
+        role: 'about'
+      },
+      {
+        label: 'Quit',
+        accelerator: 'Command+Q',
+        click() { app.quit(); }
+      },
+    ]
+  })
+}
+
+
+let win;
 
 function sendStatusToWindow(text) {
   log.info(text);
@@ -65,6 +89,8 @@ autoUpdater.on('error', (message) => {
   console.error(message)
 })
 
+
+
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -75,24 +101,6 @@ const createWindow = () => {
     },
   });
 
-
-function createDefaultWindow() {
-  win = new BrowserWindow({
-    width: 800,
-    height: 700,
-    webPreferences: {
-      nodeIntegration: true,
-      preload: path.join(__dirname, 'preload.js'),
-      contextIsolation: false
-    }
-  });
-  win.webContents.openDevTools();
-  win.on('closed', () => {
-    win = null;
-  });
-  win.loadURL(`file://${__dirname}/version.html#v${app.getVersion()}`);
-  return win;
-}
   // and load the index.html of the app.
   //mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
@@ -107,22 +115,54 @@ function createDefaultWindow() {
   mainWindow.loadFile(path.join(__dirname,'index.html'))
 };
 
+
+
+createDefaultWindow = () => {
+  win = new BrowserWindow({
+    width: 800,
+    height: 700,
+    webPreferences: {
+      nodeIntegration: true,
+      preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: false
+    },
+  });
+  //win.webContents.openDevTools();
+  win.on('closed', () => {
+    win = null;
+  });
+  win.loadURL(path.join(__dirname,'index.html'))
+  return win;
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  createWindow();
+  
 
-  // On OS X it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
+
+  //const menu = Menu.buildFromTemplate(template);
+  //Menu.setApplicationMenu(menu);
+
+  //createWindow();
+  createDefaultWindow();
+
+  //On OS X it's common to re-create a window in the app when the
+  //dock icon is clicked and there are no other windows open.
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
+      //createWindow();
+      //const menu = Menu.buildFromTemplate(template);
+      //Menu.setApplicationMenu(menu);
+
+      createDefaultWindow();
     }
   });
 });
 
 app.on('ready', async () => {
+  //createDefaultWindow();
   autoUpdater.checkForUpdatesAndNotify();
 }); 
 
