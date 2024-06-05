@@ -15,7 +15,23 @@
 </head>
 
 <body><noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
+  <div id="root">
+    <div id="messages"></div>
+    <script>
+      // Display the current version
+      let version = window.location.hash.substring(1);
+      document.getElementById('version').innerText = version;
+      
+      // Listen for messages
+      const {ipcRenderer} = require('electron');
+      ipcRenderer.on('message', function(event, text) {
+        var container = document.getElementById('messages');
+        var message = document.createElement('div');
+        message.innerHTML = text;
+        container.appendChild(message);
+      })
+      </script>
+  </div>
 </body>
 
 </html>
