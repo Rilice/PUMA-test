@@ -32,7 +32,7 @@ module.exports = {
       name: '@electron-forge/publisher-github',
       config: {
         repository: {
-          owner: 'Santens',
+          owner: 'Rilice',
           name: 'PUMA-test',
           
         },
