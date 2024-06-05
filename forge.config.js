@@ -36,7 +36,6 @@ module.exports = {
           name: 'PUMA-test',
           
         },
-        prerelease: false,
         draft: true
       }
     }
