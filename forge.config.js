@@ -27,19 +27,19 @@ module.exports = {
       config: {},
     },
   ],
-  publishers: [
-    {
-      name: '@electron-forge/publisher-github',
-      config: {
-        repository: {
-          owner: 'Rilice',
-          name: 'PUMA-test',
+  // publishers: [
+  //   {
+  //     name: '@electron-forge/publisher-github',
+  //     config: {
+  //       repository: {
+  //         owner: 'Rilice',
+  //         name: 'PUMA-test',
           
-        },
-        draft: true
-      }
-    }
-  ],
+  //       },
+  //       draft: true
+  //     }
+  //   }
+  // ],
   plugins: [
     {
       name: '@electron-forge/plugin-auto-unpack-natives',

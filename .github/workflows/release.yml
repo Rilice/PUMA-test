@@ -15,10 +15,10 @@ jobs:
       - run: sudo snap install snapcraft --classic
       - name: install dependencies
         run: npm install
-      - name: ship
+      - name: dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run ship
+        run: npm run dist
 
   publish_on_mac:
     runs-on: macos-latest
@@ -29,10 +29,10 @@ jobs:
           node-version: 20
       - name: install dependencies
         run: npm install
-      - name: ship
+      - name: dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run ship
+        run: npm run dist
 
   publish_on_win:
     runs-on: windows-latest
@@ -43,7 +43,7 @@ jobs:
           node-version: 20
       - name: install dependencies
         run: npm install
-      - name: ship
+      - name: dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run ship
+        run: npm run dist
