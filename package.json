@@ -12,7 +12,8 @@
     "lint": "echo \"No linting configured\"",
     "dist": "electron-builder",
     "ship": "electron-builder -p always",
-    "ship:all": "electron-builder -mwl --x64 --ia32 -p always"
+    "ship:all": "electron-builder -mwl --x64 --ia32 -p always",
+    "ship:all2": "electron-builder -mwl --x64 --ia32"
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.4.0",
