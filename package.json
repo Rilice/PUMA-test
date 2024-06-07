@@ -23,8 +23,7 @@
       "uninstallDisplayName": "desktop-app"
     },
     "dmg": {
-      "artifactName": "desktop-appSetupMacOS.${version}.${ext}",
-      "uninstallDisplayName": "desktop-app"
+      "artifactName": "desktop-appSetupMacOS.${version}.${ext}"
     }
   },
   "devDependencies": {
