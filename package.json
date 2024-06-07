@@ -22,7 +22,7 @@
       "artifactName": "desktop-appSetupWindows.${version}.${ext}",
       "uninstallDisplayName": "desktop-app"
     },
-    "DMG": {
+    "dmg": {
       "artifactName": "desktop-appSetupMacOS.${version}.${ext}",
       "uninstallDisplayName": "desktop-app"
     }
