@@ -12,8 +12,20 @@
     "lint": "echo \"No linting configured\"",
     "dist": "electron-builder",
     "ship": "electron-builder -p always",
+    "shipForMAC": "electron-builder -mwl -p always",
     "ship:all": "electron-builder -mwl --x64 --ia32 -p always",
     "ship:all2": "electron-builder -mwl --x64 --ia32"
+  },
+  "build": {
+    "productName": "desktop-app",
+    "nsis": {
+      "artifactName": "desktop-appSetupWindows.${version}.${ext}",
+      "uninstallDisplayName": "desktop-app"
+    },
+    "DMG": {
+      "artifactName": "desktop-appSetupMacOS.${version}.${ext}",
+      "uninstallDisplayName": "desktop-app"
+    }
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.4.0",

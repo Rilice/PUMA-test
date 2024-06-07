@@ -5,21 +5,6 @@ on:
       - "v*"
 
 jobs:
-  publish_on_linux:
-    runs-on: AppImage
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@master
-        with:
-          node-version: 20
-      - run: sudo snap install snapcraft --classic
-      - name: install dependencies
-        run: npm install
-      - name: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run dist
-
   publish_on_mac:
     runs-on: macos-latest
     steps:
